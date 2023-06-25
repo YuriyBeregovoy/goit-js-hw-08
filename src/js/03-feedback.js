@@ -15,9 +15,20 @@ populateForm();
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  clearLocalStorage();
-  logFormData();
-  clearFormFields();
+
+  if (isFormValid()) {
+    clearLocalStorage();
+    logFormData();
+    clearFormFields();
+  } else {
+    console.log("Please fill in all required fields.");
+  }
+}
+
+function isFormValid() {
+  return (
+    refs.emailInput.value.trim() !== "" && refs.textarea.value.trim() !== ""
+  );
 }
 
 function saveFormData() {
